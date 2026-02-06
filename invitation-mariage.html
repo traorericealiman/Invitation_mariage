@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aïcha & Kouadio - Notre Mariage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #d4a574;
+            --secondary: #8b6f47;
+            --accent: #e8c19a;
+            --dark: #2c2416;
+            --light: #faf8f5;
+            --gold: #d4a574;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Floating RSVP Button */
+        .floating-rsvp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--gold), var(--secondary));
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(139, 111, 71, 0.4);
+            z-index: 1000;
+            transition: all 0.4s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .floating-rsvp-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(139, 111, 71, 0.6);
+        }
+
+        .floating-rsvp-btn:active {
+            transform: translateY(-2px);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 10px 30px rgba(139, 111, 71, 0.4);
+            }
+            50% {
+                box-shadow: 0 10px 40px rgba(139, 111, 71, 0.6);
+            }
+        }
+
+        /* Hide button on mobile when keyboard is open or on small screens */
+        @media (max-width: 768px) {
+            .floating-rsvp-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 15px 25px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: 
+                linear-gradient(to right, rgba(44, 36, 22, 0.85) 0%, rgba(44, 36, 22, 0.4) 50%, rgba(44, 36, 22, 0.85) 100%),
+                linear-gradient(to right, transparent 0%, transparent 45%, transparent 55%, transparent 100%),
+                url('https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=800&h=1200&fit=crop&crop=faces') left center/50% 100% no-repeat,
+                url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1200&fit=crop&crop=faces') right center/50% 100% no-repeat;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.3) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            color: white;
+            z-index: 2;
+            animation: slideUp 1s ease-out 0.3s backwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-ornament {
+            width: 120px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0 auto 30px;
+            position: relative;
+            animation: expandWidth 0.8s ease-out 0.8s backwards;
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 120px; }
+        }
+
+        .hero-ornament::before,
+        .hero-ornament::after {
+            content: '◆';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            color: var(--gold);
+        }
+
+        .hero-ornament::before {
+            left: -30px;
+        }
+
+        .hero-ornament::after {
+            right: -30px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-shadow: 2px 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero-date {
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 15px;
+            opacity: 0.95;
+        }
+
+        .hero-location {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-weight: 300;
+            opacity: 0.9;
+            letter-spacing: 2px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 14px;
+            letter-spacing: 3px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, 10px); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Mot des Mariés */
+        .couple-message {
+            padding: 100px 20px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .couple-message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(212, 165, 116, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(212, 165, 116, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--dark);
+            font-weight: 400;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+            margin: 20px auto 0;
+        }
+
+        .message-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .message-card {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.03), rgba(212, 165, 116, 0.08));
+            border-radius: 20px;
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .message-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(212, 165, 116, 0.2);
+        }
+
+        .message-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            border: 4px solid var(--gold);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .message-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .message-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .message-text {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: var(--dark);
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 100px 20px;
+            background: var(--light);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 60px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            padding: 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Event Details */
+        .event-details {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .detail-card {
+            background: linear-gradient(135deg, var(--gold), var(--secondary));
+            padding: 50px 30px;
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(139, 111, 71, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .detail-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transition: transform 0.6s ease;
+        }
+
+        .detail-card:hover::before {
+            transform: translate(-25%, -25%);
+        }
+
+        .detail-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(139, 111, 71, 0.4);
+        }
+
+        .detail-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .detail-info {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 100px 20px;
+            background: var(--light);
+        }
+
+        .map-container {
+            max-width: 1000px;
+            margin: 0 auto 50px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .map-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .map-info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--gold);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .map-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.2);
+        }
+
+        .map-info-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .map-info-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 20px;
+            background: var(--dark);
+            color: white;
+        }
+
+        .contact-section .section-title {
+            color: white;
+        }
+
+        .contact-section .section-title::after {
+            background: var(--gold);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .contact-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .contact-info strong {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        /* RSVP Form */
+        .rsvp-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(232, 193, 154, 0.15));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rsvp-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(212, 165, 116, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(212, 165, 116, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .rsvp-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px 50px;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid rgba(212, 165, 116, 0.3);
+            border-radius: 10px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: rgba(250, 248, 245, 0.5);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: white;
+            box-shadow: 0 5px 20px rgba(212, 165, 116, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--gold), var(--secondary));
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(139, 111, 71, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 111, 71, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border: 2px solid #a3d9b1;
+            color: #155724;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            display: none;
+            text-align: center;
+            font-size: 1.2rem;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Guest List */
+        .guests-section {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .guest-stats {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 1.3rem;
+            color: var(--secondary);
+        }
+
+        .guest-stats span {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--gold);
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .guests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .guest-card {
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.05), rgba(232, 193, 154, 0.1));
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid var(--gold);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .guest-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.2);
+        }
+
+        .guest-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .guest-info {
+            color: #666;
+            margin-bottom: 5px;
+            font-size: 1.05rem;
+        }
+
+        .guest-message {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            font-style: italic;
+            color: #555;
+            border-left: 3px solid var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        footer p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+
+        .footer-heart {
+            color: var(--gold);
+            font-size: 1.5rem;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .rsvp-container {
+                padding: 40px 30px;
+            }
+            
+            .message-grid,
+            .details-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating RSVP Button -->
+    <button class="floating-rsvp-btn" id="floatingRsvpBtn">
+        Confirmer votre présence
+    </button>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-ornament"></div>
+            <h1>Aïcha & Kouadio</h1>
+            <p class="hero-date">14 SEPTEMBRE 2026</p>
+            <p class="hero-location">Grand-Bassam, Côte d'Ivoire</p>
+        </div>
+        <div class="scroll-indicator">↓ SCROLL ↓</div>
+    </section>
+
+    <!-- Mot des Mariés -->
+    <section class="couple-message">
+        <div class="container">
+            <h2 class="section-title">Le Mot des Mariés</h2>
+            <div class="message-grid">
+                <div class="message-card">
+                    <div class="message-photo">
+                        <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=400&fit=crop&crop=faces" alt="Aïcha">
+                    </div>
+                    <h3 class="message-name">Aïcha</h3>
+                    <p class="message-text">
+                        "Depuis notre rencontre au marché de Cocody, ma vie a pris un tournant magique. 
+                        Kouadio est mon roc, mon complice, celui qui fait danser mon cœur au rythme du coupé-décalé. 
+                        J'ai hâte de partager ce jour unique avec vous tous, nos familles et amis qui nous sont si chers."
+                    </p>
+                </div>
+                <div class="message-card">
+                    <div class="message-photo">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=faces" alt="Kouadio">
+                    </div>
+                    <h3 class="message-name">Kouadio</h3>
+                    <p class="message-text">
+                        "Aïcha a illuminé ma vie comme le soleil sur la lagune Ébrié. 
+                        Elle est ma force, mon inspiration, ma meilleure amie. 
+                        Ensemble, nous écrivons une belle histoire et nous sommes impatients de célébrer notre amour 
+                        avec vous, au bord de l'océan, dans la magnifique ville de Grand-Bassam."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title">Nos Moments</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&h=600&fit=crop" alt="Couple en bord de mer">
+                    <div class="gallery-overlay">
+                        <p>Notre premier voyage ensemble</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d0b7d?w=800&h=600&fit=crop" alt="Coucher de soleil">
+                    <div class="gallery-overlay">
+                        <p>Coucher de soleil à Assinie</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1522673607211-8f6f408a2310?w=800&h=600&fit=crop" alt="Couple heureux">
+                    <div class="gallery-overlay">
+                        <p>Fous rires au marché de Treichville</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&h=600&fit=crop" alt="Danse">
+                    <div class="gallery-overlay">
+                        <p>Soirée dansante à Abidjan</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=800&h=600&fit=crop" alt="Plage">
+                    <div class="gallery-overlay">
+                        <p>Week-end romantique à Grand-Bassam</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?w=800&h=600&fit=crop" alt="Famille">
+                    <div class="gallery-overlay">
+                        <p>Réunion de famille à Yamoussoukro</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details -->
+    <section class="event-details">
+        <div class="container">
+            <h2 class="section-title">Détails de l'Événement</h2>
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h3 class="detail-title">Lieu de la Cérémonie</h3>
+                    <p class="detail-info">
+                        <strong>Hôtel Enotel</strong><br>
+                        Boulevard de Grand-Bassam<br>
+                        Grand-Bassam, Côte d'Ivoire
+                    </p>
+                </div>
+                <div class="detail-card">
+                    <h3 class="detail-title">Programme</h3>
+                    <p class="detail-info">
+                        <strong>Cérémonie:</strong> 14h30<br>
+                        <strong>Cocktail:</strong> 16h00<br>
+                        <strong>Dîner & Soirée:</strong> 18h30<br>
+                        <strong>Ambiance:</strong> Jusqu'à l'aube
+                    </p>
+                </div>
+                <div class="detail-card">
+                    <h3 class="detail-title">Dress Code</h3>
+                    <p class="detail-info">
+                        <strong>Tenue de soirée élégante</strong><br>
+                        Thème: Blanc & Or<br>
+                        Tradition ivoirienne bienvenue<br>
+                        Pagne & Kita encouragés
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title">Comment nous rejoindre</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 40px; color: var(--secondary);">
+                Hôtel Enotel, Boulevard de Grand-Bassam, Grand-Bassam, Côte d'Ivoire
+            </p>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.7516890563917!2d-3.7404499999999997!3d5.244999999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc1eb2f3a7c4f85%3A0x8f8c8f8c8f8c8f8c!2sGrand-Bassam%2C%20C%C3%B4te%20d&#39;Ivoire!5e0!3m2!1sfr!2sus!4v1234567890123!5m2!1sfr!2sus" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0; border-radius: 15px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Nous Contacter</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3 class="contact-title">Famille de la Mariée</h3>
+                    <p class="contact-info">
+                        <strong>M. Konan Adjoua</strong><br>
+                        +225 07 XX XX XX XX<br>
+                        konan.adjoua@email.com
+                    </p>
+                </div>
+                <div class="contact-card">
+                    <h3 class="contact-title">Famille du Marié</h3>
+                    <p class="contact-info">
+                        <strong>Mme Kouassi Aya</strong><br>
+                        +225 05 XX XX XX XX<br>
+                        kouassi.aya@email.com
+                    </p>
+                </div>
+                <div class="contact-card">
+                    <h3 class="contact-title">Organisation</h3>
+                    <p class="contact-info">
+                        <strong>Coordination Événements</strong><br>
+                        +225 27 XX XX XX XX<br>
+                        contact@mariage-aicha-kouadio.ci
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section class="rsvp-section">
+        <div class="container">
+            <h2 class="section-title">Confirmez Votre Présence</h2>
+            <div class="rsvp-container">
+                <form id="rsvpForm">
+                    <div class="form-group">
+                        <label for="name">Nom Complet *</label>
+                        <input type="text" id="name" required placeholder="Votre nom complet">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="votre.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Téléphone *</label>
+                        <input type="tel" id="phone" required placeholder="+225 XX XX XX XX XX">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="relation">Lien avec les mariés *</label>
+                        <select id="relation" required>
+                            <option value="">Choisissez...</option>
+                            <option value="Famille de la mariée">Famille de la mariée</option>
+                            <option value="Famille du marié">Famille du marié</option>
+                            <option value="Ami(e) de la mariée">Ami(e) de la mariée</option>
+                            <option value="Ami(e) du marié">Ami(e) du marié</option>
+                            <option value="Ami(e) du couple">Ami(e) du couple</option>
+                            <option value="Collègue">Collègue</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guests">Nombre de Personnes *</label>
+                        <select id="guests" required>
+                            <option value="">Choisissez...</option>
+                            <option value="1">1 personne</option>
+                            <option value="2">2 personnes</option>
+                            <option value="3">3 personnes</option>
+                            <option value="4">4 personnes</option>
+                            <option value="5">5 personnes</option>
+                            <option value="6+">6+ personnes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="meal">Préférences Alimentaires</label>
+                        <textarea id="meal" placeholder="Allergies, régime végétarien, halal..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message pour les Mariés</label>
+                        <textarea id="message" placeholder="Partagez vos vœux de bonheur..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Confirmer Ma Présence</button>
+                </form>
+
+                <div class="success-message" id="successMessage">
+                    ✨ Merci pour votre demande ! Votre confirmation est en attente de validation. Vous recevrez une notification par téléphone une fois approuvée. ✨
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guests List - HIDDEN FOR PUBLIC -->
+    <section class="guests-section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Nos Invités Confirmés</h2>
+            <div class="guest-stats" id="guestStats">
+                Chargement...
+            </div>
+            <div class="guests-grid" id="guestsContainer"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Fait avec <span class="footer-heart">♥</span> pour Aïcha & Kouadio</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Grand-Bassam • 14 Septembre 2026</p>
+    </footer>
+
+    <script>
+        // Gestion du localStorage
+        let guests = JSON.parse(localStorage.getItem('weddingGuestsCI')) || [];
+
+        // Vérifier si on est en mode admin (via URL: ?admin=true)
+        const urlParams = new URLSearchParams(window.location.search);
+        const isAdmin = urlParams.get('admin') === 'true';
+
+        // Si mode admin, afficher la section des invités
+        if (isAdmin) {
+            document.querySelector('.guests-section').style.display = 'block';
+            displayGuests();
+        }
+
+        // Affichage initial
+        if (isAdmin) {
+            displayGuests();
+        }
+
+        // Smooth scroll
+        document.querySelector('.scroll-indicator').addEventListener('click', () => {
+            document.querySelector('.couple-message').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Floating RSVP button - scroll to form
+        document.getElementById('floatingRsvpBtn').addEventListener('click', () => {
+            document.querySelector('.rsvp-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        // Formulaire RSVP
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const guest = {
+                id: Date.now(),
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                relation: document.getElementById('relation').value,
+                guestCount: document.getElementById('guests').value,
+                meal: document.getElementById('meal').value,
+                message: document.getElementById('message').value,
+                status: 'pending', // En attente de validation
+                date: new Date().toLocaleDateString('fr-FR', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                })
+            };
+
+            guests.push(guest);
+            localStorage.setItem('weddingGuestsCI', JSON.stringify(guests));
+
+            // Message de succès
+            const successMsg = document.getElementById('successMessage');
+            successMsg.style.display = 'block';
+            
+            // Reset formulaire
+            this.reset();
+
+            // Mettre à jour la liste seulement si admin
+            if (isAdmin) {
+                displayGuests();
+            }
+
+            // Scroll vers succès
+            successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Cacher après 6 secondes
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 6000);
+        });
+
+        function displayGuests() {
+            const container = document.getElementById('guestsContainer');
+            const statsContainer = document.getElementById('guestStats');
+            
+            if (guests.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #999; font-size: 1.2rem; grid-column: 1/-1;">Soyez le premier à confirmer votre présence !</p>';
+                statsContainer.innerHTML = '<span>0</span> confirmation • <span>0</span> invité';
+                return;
+            }
+
+            // Calculer stats
+            let totalPersons = 0;
+            guests.forEach(guest => {
+                const count = guest.guestCount;
+                if (count.includes('+')) {
+                    totalPersons += 6;
+                } else {
+                    totalPersons += parseInt(count);
+                }
+            });
+
+            statsContainer.innerHTML = `
+                <span>${guests.length}</span> confirmation${guests.length > 1 ? 's' : ''} • 
+                <span>${totalPersons}</span> invité${totalPersons > 1 ? 's' : ''}
+            `;
+
+            container.innerHTML = guests.map(guest => `
+                <div class="guest-card">
+                    <div class="guest-name">${guest.name}</div>
+                    ${guest.relation ? `<div class="guest-info">Lien: ${guest.relation}</div>` : ''}
+                    ${guest.email ? `<div class="guest-info">Email: ${guest.email}</div>` : ''}
+                    ${guest.phone ? `<div class="guest-info">Tél: ${guest.phone}</div>` : ''}
+                    <div class="guest-info">Nombre: ${guest.guestCount} personne${guest.guestCount > 1 ? 's' : ''}</div>
+                    <div class="guest-info">Date: ${guest.date}</div>
+                    <div class="guest-info">Statut: ${guest.status === 'pending' ? '⏳ En attente' : '✅ Approuvé'}</div>
+                    ${guest.meal ? `<div class="guest-info">Préférences: ${guest.meal}</div>` : ''}
+                    ${guest.message ? `<div class="guest-message">"${guest.message}"</div>` : ''}
+                </div>
+            `).join('');
+        }
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.message-card, .detail-card, .gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
